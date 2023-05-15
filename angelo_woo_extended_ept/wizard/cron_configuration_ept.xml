@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <!-- Update price cron Configuration in Config wizard -->
+    <record id="woo_update_price_cron_configuration_ept_wizard" model="ir.ui.view">
+        <field name="name">woo.update.price.cron.configuration.ept.wizard</field>
+        <field name="model">woo.cron.configuration.ept</field>
+        <field name="inherit_id" ref="woo_commerce_ept.woo_cron_configuration_ept_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//form[hasclass('o_woo_ept')]" position="inside">
+                <div class="o_horizontal_separator o_onboard_header font-weight-bold"
+                     invisible="context.get('is_calling_from_onboarding_panel', False) and not context.get('is_instance_exists', False)">
+                    Update Product Price
+                </div>
+                <group invisible="context.get('is_calling_from_onboarding_panel', False) and not context.get('is_instance_exists', False)">
+                    <div class="o_setting_left_pane">
+                        <div class="row mt16 o_settings_container o_onboard_padding">
+                            <!-- Update product price Cron -->
+                            <div class="col-12 o_setting_box o_onboard_setting_box">
+                                <div class="o_setting_left_pane">
+                                    <field name="woo_auto_update_product_price" widget="boolean_toggle"
+                                           class="o_onboard_boolean_toggle"/>
+                                </div>
+                                <div class="o_setting_right_pane" style="margin-left:40px !important;">
+                                    <span>
+                                        <label for="woo_auto_update_order_status"
+                                               string="Update Product Price in WooCommerce"/>
+                                    </span>
+                                    <div class="text-muted">
+                                        If checked, It will create a cron job to automatically
+                                        Update Product price from Odoo to WooCommerce at
+                                        certain intervals.
+                                    </div>
+                                    <br/>
+                                    <div class="o_onboard_cron_settings"
+                                         attrs="{'invisible': [('woo_auto_update_product_price', '=', False)]}">
+                                        <field name="woo_update_product_price_interval_number"
+                                               placeholder="Interval Number"
+                                               attrs="{'required': [('woo_auto_update_product_price', '=', True)]}"
+                                               class="o_onboard_cron_box"/>
+                                        <field name="woo_update_product_price_interval_type"
+                                               placeholder="Interval Type"
+                                               attrs="{'required': [('woo_auto_update_product_price', '=', True)]}"
+                                               class="o_onboard_cron_type"/>
+                                        <field name="woo_update_product_price_next_execution"
+                                               placeholder="Next Execution Date"
+                                               attrs="{'required': [('woo_auto_update_product_price', '=', True)]}"
+                                               class="o_onboard_cron_execution"/>
+                                        <field name="woo_update_product_price_user_id"
+                                               placeholder="Responsible User"
+                                               attrs="{'required': [('woo_auto_update_product_price', '=', True)]}"
+                                               class="o_onboard_cron_user"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </group>
+            </xpath>
+        </field>
+    </record>
+</odoo>

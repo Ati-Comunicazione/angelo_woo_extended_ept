@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <!-- update product price cron -->
+    <record id="ir_cron_update_woo_product_price" model="ir.cron">
+        <field name="name">Woo Update Product Price</field>
+        <field eval="False" name="active"/>
+        <field name="user_id" ref="base.user_root"/>
+        <field name="interval_number">1</field>
+        <field name="interval_type">days</field>
+        <field name="numbercall">-1</field>
+        <field name="state">code</field>
+        <field name="doall">False</field>
+        <field name="model_id" ref="model_woo_product_template_ept"/>
+        <field name="code">model.auto_update_product_price()</field>
+    </record>
+</odoo>
